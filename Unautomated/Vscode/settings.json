@@ -1,0 +1,94 @@
+{
+
+    //
+    // UEFI
+    //
+    // The number of spaces a tab is equal to.
+    "editor.tabSize": 2,
+
+    // 80 column line
+    "editor.rulers": [128],
+
+    // Insert spaces when pressing Tab.
+    "editor.insertSpaces": true,
+
+    // Configure file associations to languages (e.g. "*.extension": "html"). These have precedence over the default associations of the languages installed.
+    "files.associations": {
+    // Now handled with extensions: walonli.edk2-vscode, Thog.vscode-asl, pinshengjuan.edk2-uni-formatter
+    //    "*.mak":  "makefile",
+    //    "*.inf":  "ini",
+    //    "*.dec":  "makefile",
+    //    "*.dsc":  "makefile",
+    //    "*.fdf":  "makefile",
+    //    "*.hfr":  "cpp",
+    //    "*.vfr":  "cpp",
+    //    "*.uni":  "cpp",
+    //    "*.asl":  "cpp",
+    //    "*.asi":  "cpp"
+    },
+
+    // Trailing spaces editor
+    "trailing-spaces.backgroundColor": "rgba(255,0,0,0.8)",
+    "trailing-spaces.highlightCurrentLine": false,
+
+    // Gitlens diff
+    "diffEditor.originalEditable": true,
+
+    //
+    // VIM
+    //
+    "vim.hlsearch": true,
+    "vim.insertModeKeyBindings": [
+     {
+         "before": ["j", "j"],
+         "after": ["<esc>"]
+     }
+    ],
+    "vim.normalModeKeyBindingsNonRecursive": [
+     {
+         "before": ["<leader>", "o"],
+         "after": ["o", "<esc>", "k"]
+     },
+     {
+         "before": ["<leader>", "O"],
+         "after": ["O", "<esc>", "j"]
+     }
+    ],
+    "vim.visualModeKeyBindingsNonRecursive": [
+        {
+            "before": [ "p", ],
+            "after": [ "p", "g", "v", "y" ]
+        }
+    ],
+
+
+    // Settings-sync
+    //"http.proxy": "http://proxy-chain.intel.com:911",
+    "http.proxyAuthorization": null,
+    "http.proxySupport": "on",
+    "http.proxyStrictSSL": false,
+    "sync.gist": "SecretLikeHell",
+
+    //
+    // Other
+    //
+    "breadcrumbs.enabled": true,
+    "files.maxMemoryForLargeFilesMB": 8192,
+    "sync.autoUpload": false,
+    "editor.renderWhitespace": "boundary",
+    "workbench.iconTheme": "Monokai Pro Icons",
+    "workbench.colorTheme": "Monokai Pro",
+    "workbench.colorCustomizations": {
+        "editor.background": "#000000",
+        "editorRuler.foreground": "#ff0000",
+        "editor.selectionHighlightBorder": "#ffee00",
+        "editor.findMatchHighlightBorder": "#ff0000",
+        "editor.findMatchBorder": "#ff0000",
+    // "workbench.colorCustomizations": { "[Night Owl]":
+    // { "editor.findMatchBorder": "#9735c5", "editor.findMatchHighlightBackground": "#4e31539a",
+    //     "editor.findMatchHighlightBorder": "#f700ff9a", "editor.selectionBackground": "#2a5679",
+    //     "editor.selectionHighlightBackground": "#2a567940", "editor.selectionHighlightBorder": "#689eca",
+    //     "editor.wordHighlightBackground": "#00ffff40", "editor.wordHighlightBorder": "#5aca76",
+    //     "editor.wordHighlightStrongBackground": "#00ffff40", "editor.wordHighlightStrongBorder": "#5aca76", },
+    }
+}

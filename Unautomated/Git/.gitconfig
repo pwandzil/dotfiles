@@ -1,0 +1,63 @@
+[core]
+	#autocrlf = true
+	editor = vim
+	#sparsecheckout = false
+[pack]
+	packSizeLimit = 2g
+[user]
+	email = 4797644+pwandzil@users.noreply.github.com
+	name  = Przemysław Wandzilak
+[alias]
+	co = checkout
+	df = difftool --no-prompt
+	df1 = difftool HEAD^1 --no-prompt
+	diffall = !sh git-diffall.sh
+	diffall1 = !sh git-diffall1.sh
+        #http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+	cp = cherry-pick
+	st = status #-s
+	cl = clone
+	ci = commit
+	camne = commit -a --amend --no-edit
+	diff = diff --word-diff
+	dc = diff --cached
+	r = reset
+	r1 = reset HEAD^
+	r2 = reset HEAD^^
+	rh = reset --hard
+	rh1 = reset HEAD^ --hard
+	rh2 = reset HEAD^^ --hard
+	br = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) - (%(color:green)%(committerdate:relative)%(color:reset))'
+	br1 = for-each-ref --count=30 --sort=-committerdate refs/heads/ --format='%(refname:short)'
+	br2 = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - (%(color:green)%(committerdate:relative)%(color:reset))'
+	brl = for-each-ref --sort=committerdate refs/heads/ --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(color:red)%(objectname:short)%(color:reset) - %(contents:subject) - %(authorname) (%(color:green)%(committerdate:relative)%(color:reset))'
+	lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	la = log --graph --decorate --pretty=oneline --abbrev-commit --all -20
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit
+	l = log --graph --decorate --pretty=oneline --abbrev-commit -20
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+	lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+	ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+	dl = "!git ll -1"
+	dlc = diff --cached HEAD^
+	f = "!git ls-files | grep -i"
+	lasttag = describe --tags --abbrev=0
+	lt = describe --tags --abbrev=0
+[diff]
+	tool = bc
+[difftool "bc"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[merge]
+	tool = bc
+[mergetool "bc"]
+	path = c:/Program Files/Beyond Compare 4/bcomp.exe
+[merge "ours"]
+	name = Always take our version
+	driver = echo
+[merge "theirs"]
+	name = Always take their version
+	driver = cat %B > %A
+#[https]
+#	proxy = http://proxy-chain.intel.com:912
