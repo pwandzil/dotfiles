@@ -8,12 +8,16 @@
 	email = 4797644+pwandzil@users.noreply.github.com
 	name  = Przemysław Wandzilak
 [alias]
+  # commit user
+	commit-n = -c user.name='Przemysław Wandzilak' -c user.email='4797644+pwandzil@users.noreply.github.com' commit
+	commit-x = -c user.name='My Y Name' -c user.email='mr_y@email.com' commit
+  # git
 	co = checkout
 	df = difftool --no-prompt
 	df1 = difftool HEAD^1 --no-prompt
 	diffall = !sh git-diffall.sh
 	diffall1 = !sh git-diffall1.sh
-        #http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+  # http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
 	cp = cherry-pick
 	st = status #-s
 	cl = clone

@@ -5,6 +5,7 @@ ban.spellright
 CoenraadS.bracket-pair-colorizer
 donjayamanne.githistory
 eamodio.gitlens
+GitHub.vscode-pull-request-github
 hoovercj.vscode-power-mode
 ivanhofer.git-assistant
 monokai.theme-monokai-pro-vscode
@@ -12,6 +13,7 @@ ms-vscode.cpptools
 pinshengjuan.edk2-uni-formatter
 Shan.code-settings-sync
 shardulm94.trailing-spaces
+shd101wyy.markdown-preview-enhanced
 Thog.vscode-asl
 vscodevim.vim
 walonli.edk2-vscode

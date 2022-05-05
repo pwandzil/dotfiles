@@ -1,4 +1,5 @@
 {
+    //C:\Users\<user>\AppData\Roaming\Code\User\settings.json
 
     //
     // UEFI
@@ -76,6 +77,7 @@
     "files.maxMemoryForLargeFilesMB": 8192,
     "sync.autoUpload": false,
     "editor.renderWhitespace": "boundary",
+    "editor.fontSize": 12,
     "workbench.iconTheme": "Monokai Pro Icons",
     "workbench.colorTheme": "Monokai Pro",
     "workbench.colorCustomizations": {
@@ -84,11 +86,36 @@
         "editor.selectionHighlightBorder": "#ffee00",
         "editor.findMatchHighlightBorder": "#ff0000",
         "editor.findMatchBorder": "#ff0000",
-    // "workbench.colorCustomizations": { "[Night Owl]":
-    // { "editor.findMatchBorder": "#9735c5", "editor.findMatchHighlightBackground": "#4e31539a",
-    //     "editor.findMatchHighlightBorder": "#f700ff9a", "editor.selectionBackground": "#2a5679",
-    //     "editor.selectionHighlightBackground": "#2a567940", "editor.selectionHighlightBorder": "#689eca",
-    //     "editor.wordHighlightBackground": "#00ffff40", "editor.wordHighlightBorder": "#5aca76",
-    //     "editor.wordHighlightStrongBackground": "#00ffff40", "editor.wordHighlightStrongBorder": "#5aca76", },
-    }
+        //Diff
+        "diffEditor.removedTextBackground": "#ff00003a",
+        "diffEditor.insertedTextBackground": "#00ff0031",
+           // "workbench.colorCustomizations": { "[Night Owl]":
+           // { "editor.findMatchBorder": "#9735c5", "editor.findMatchHighlightBackground": "#4e31539a",
+           //     "editor.findMatchHighlightBorder": "#f700ff9a", "editor.selectionBackground": "#2a5679",
+           //     "editor.selectionHighlightBackground": "#2a567940", "editor.selectionHighlightBorder": "#689eca",
+           //     "editor.wordHighlightBackground": "#00ffff40", "editor.wordHighlightBorder": "#5aca76",
+           //     "editor.wordHighlightStrongBackground": "#00ffff40", "editor.wordHighlightStrongBorder": "#5aca76", },
+      "scrollbarSlider.background": "#ff3d3dad",
+      "minimapSlider.background": "#ff6666b4",
+      "scrollbarSlider.hoverBackground": "#ffa600cb",
+      "minimapSlider.hoverBackground": "#ffd000da",
+      "scrollbarSlider.activeBackground": "#ffee009d",
+      "minimapSlider.activeBackground": "#ffee009d",
+    },
+
+    "githubPullRequests.queries": [
+
+        {
+            "label": "Waiting For My Review",
+            "query": "is:open review-requested:${user}"
+        },
+        {
+            "label": "Assigned To Me",
+            "query": "is:open assignee:${user}"
+        },
+        {
+            "label": "Created By Me",
+            "query": "is:open author:${user}"
+        },
+    ]
 }
