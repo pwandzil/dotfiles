@@ -25,7 +25,8 @@
     //    "*.vfr":  "cpp",
     //    "*.uni":  "cpp",
     //    "*.asl":  "cpp",
-    //    "*.asi":  "cpp"
+    //    "*.asi":  "cpp",
+          "*.mmd":  "markdown"
     },
 
     // Trailing spaces editor
@@ -117,5 +118,6 @@
             "label": "Created By Me",
             "query": "is:open author:${user}"
         },
-    ]
+    ],
+    "markdown-preview-enhanced.scrollSync": true
 }
