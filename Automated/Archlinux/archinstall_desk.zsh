@@ -139,12 +139,46 @@ echo edit /etc/pacman/mirrorlist
 
 echo "${GREEN} # 2.13 Install essential packages${RESET}"
 # mariginal trust packages
-pacman -Sy archlinux-keyring && pacman -Su
-pacstrap /mnt base linux linux-firmware base-devel git vim netctl dhcpcd man-db man-pages texinfo lvm2
+# pacman -Sy archlinux-keyring && pacman -Su
+echo "Don't forget the zsh xD"
+pacstrap /mnt base linux linux-firmware base-devel git vim zsh netctl dhcpcd man-db man-pages texinfo lvm2
 }
 
 function ArchlinuxInstall_Configuration () {
 echo "${GREEN} # 3. Configuration ${RESET}"
+echo "${GREEN} # 3.14 Fstab ${RESET}"
+genfstab -U /mnt >> /mnt/etc/fstab
+echo "${GREEN} # 3.15 Chroot ${RESET}"
+arch-chroot /mnt
+}
+
+function ArchlinuxInstall_Configuration2 () {
+echo "${GREEN} # 3.16 Time Zone ${RESET}"
+echo "timedatectl won't work in chroot, use tzselect to find out zone"
+ln -sf /usr/share/zoneinfo/Europe/Warsaw /etc/localtime
+hwclock --systohc
+echo "Done. For next step: edit /etc/locale.gen"
+}
+
+function ArchlinuxInstall_Configuration3 () {
+echo "${GREEN} # 3.17 Localization ${RESET}"
+locale-gen
+echo LANG=en_US.UTF-8 > /etc/locale.conf
+cat /etc/locale.conf
+loadkeys pl2
+echo KEYMAP=pl2 > /etc/vconsole.conf
+cat /etc/vconsole.conf
+echo "${GREEN} # 3.18 Network Configuration ${RESET}"
+echo myhostname > /etc/hostname
+echo "${GREEN} # 3.19 Initramfs ${RESET}"
+mkinitcpio -P
+}
+
+function ArchlinuxInstall_Configuration4 () {
+echo "${GREEN} # 3.20 Rootp ${RESET}"
+echo passwd
+echo "${GREEN} # 3.21 Bootldr ${RESET}"
+echo lets go with systemd-boot
 }
 
 #
@@ -153,7 +187,10 @@ echo "${GREEN} # 3. Configuration ${RESET}"
 printf "Select the part to run [Y/n]
          1. Preparation
 	 2. Installation
-	 3. Configuration
+	 3. Configuration (chroot)
+	 4. Configuration2 (timezone)
+	 5. Configuration3 (localization, ntwrk, initramfs)
+	 6. Configuration4 (rootp, bootldr)
 	 \n"
 read answer
 case $answer in
@@ -162,6 +199,12 @@ case $answer in
   2) ArchlinuxInstall_Installation
   ;;
   3) ArchlinuxInstall_Configuration
+  ;;
+  4) ArchlinuxInstall_Configuration2
+  ;;
+  5) ArchlinuxInstall_Configuration3
+  ;;
+  6) ArchlinuxInstall_Configuration4
   ;;
 esac
 
