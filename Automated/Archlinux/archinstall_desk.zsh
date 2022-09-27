@@ -140,8 +140,8 @@ echo edit /etc/pacman/mirrorlist
 echo "${GREEN} # 2.13 Install essential packages${RESET}"
 # mariginal trust packages
 # pacman -Sy archlinux-keyring && pacman -Su
-echo "Don't forget the zsh xD"
-pacstrap /mnt base linux linux-firmware base-devel git vim zsh netctl dhcpcd man-db man-pages texinfo lvm2
+echo "Don't forget the intel-ucode, btrfs, zsh xD, and tmux!"
+pacstrap /mnt base linux linux-firmware intel-ucode btrfs-progs base-devel git vim zsh tmux sudo netctl dhcpcd man-db man-pages texinfo lvm2
 }
 
 function ArchlinuxInstall_Configuration () {
@@ -173,6 +173,10 @@ echo myhostname > /etc/hostname
 cat /etc/hostname
 echo "${GREEN} # 3.19 Initramfs ${RESET}"
 mkinitcpio -P
+
+# Initramfs #error file not found ‘fsck.btrfs’
+pacman -S btrfs-progs
+mkinitcpio -P
 }
 
 function ArchlinuxInstall_Configuration4 () {
@@ -180,14 +184,48 @@ echo "${GREEN} # 3.20 Rootp ${RESET}"
 passwd
 echo "${GREEN} # 3.21 Bootldr ${RESET}"
 echo lets go with systemd-boot
+# https://wiki.archlinux.org/title/Systemd-boot#Installing_the_EFI_boot_manager
 bootctl install 
+
+# Systemd-Boot configuration file is located at: esp/loader/loader.conf
+cat /boot/loader/loader.conf
+
+# Tip Sample Entry file File: 
+  # default  arch.conf
+  # timeout  4
+  # console-mode max
+  # editor   no
+cat /usr/share/systemd/bootctl/arch.conf
+
+# Target Arch Entry: esp/loader/entries/arch.conf
+  # title   Arch Linux
+  # linux   /vmlinuz-linux
+  # initrd  /intel-ucode.img
+  # initrd  /initramfs-linux.img
+  # options root="LABEL=arch_os" rw // << use UUID rather than LABEL
+  # options root="UUID=<<UUID>>" rw 
+  # options root="UUID=<<UUID>>" rw quiet splash // quiet or not?
+cat /boot/loader/entries/arch.conf
+
+echo "${GREEN} # 3.21 Bootldr - install uCode${RESET}"
+paceman -S intel-ucode 
+
 }
 
 function ArchlinuxInstall_Configuration5 () {
 echo exit chroot
+# sync all mount points
+sync
+# or unmount
 echo umount -R /mnt
 echo reboot
+
+# Troubleshooting #1
+# fstab problem
+# trying to boot from the UUID boot partition that does not exist. Hm. 
+Echo fix fstab
 }
+
 #
 # Main
 #
