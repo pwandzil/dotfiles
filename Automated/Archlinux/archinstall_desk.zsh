@@ -170,17 +170,24 @@ echo KEYMAP=pl2 > /etc/vconsole.conf
 cat /etc/vconsole.conf
 echo "${GREEN} # 3.18 Network Configuration ${RESET}"
 echo myhostname > /etc/hostname
+cat /etc/hostname
 echo "${GREEN} # 3.19 Initramfs ${RESET}"
 mkinitcpio -P
 }
 
 function ArchlinuxInstall_Configuration4 () {
 echo "${GREEN} # 3.20 Rootp ${RESET}"
-echo passwd
+passwd
 echo "${GREEN} # 3.21 Bootldr ${RESET}"
 echo lets go with systemd-boot
+bootctl install 
 }
 
+function ArchlinuxInstall_Configuration5 () {
+echo exit chroot
+echo umount -R /mnt
+echo reboot
+}
 #
 # Main
 #
@@ -191,6 +198,7 @@ printf "Select the part to run [Y/n]
 	 4. Configuration2 (timezone)
 	 5. Configuration3 (localization, ntwrk, initramfs)
 	 6. Configuration4 (rootp, bootldr)
+	 7. Configuration5 (cleanup)
 	 \n"
 read answer
 case $answer in
@@ -205,6 +213,8 @@ case $answer in
   5) ArchlinuxInstall_Configuration3
   ;;
   6) ArchlinuxInstall_Configuration4
+  ;;
+  7) ArchlinuxInstall_Configuration5
   ;;
 esac
 
