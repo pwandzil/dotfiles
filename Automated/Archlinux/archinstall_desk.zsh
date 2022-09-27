@@ -31,7 +31,7 @@ trap 'echo "\"${last_command}\" command failed with exit code $?."' EXIT
 #
 # Installation
 #
-function ArchlinuxInstall_BeforeChroot () {
+function ArchlinuxInstall_Preparation () {
 echo "${GREEN} # Archlinux Install Desktop 2022-07 ${RESET}"
 echo "${GREEN} # 1.4 Boot the live environment ${RESET}"
 echo "${GREEN} # 1.5 Keboard layout: set to Poland pl2 ${RESET}"
@@ -111,9 +111,10 @@ if [ "$answer" != "${answer#[Yy]}" ] ;then
 	mkfs.btrfs -f    -L RootPart0 /dev/sda3
 
 	echo "${GREEN} # 1.11 Mount the file systems ${RESET}"
-	#mount         /dev/sda3 /mnt
-	#mount --mkdir /dev/sda1 /mnt/boot
-	#swapon        /dev/sda2
+	mount         /dev/sda3 /mnt
+	mount --mkdir /dev/sda1 /mnt/boot
+	swapon        /dev/sda2
+	mkdir /mnt/usb
 else
 	echo No.
 fi
@@ -129,30 +130,38 @@ lsblk -f
 echo "${GREEN} # While on SSD mind the Solid_state_drive#TRIM ${RESET}"
 
 
-
-echo "${GREEN} # 1.11  ${RESET}"
-echo "${GREEN} # 1.11  ${RESET}"
-echo "${GREEN} # 1.11  ${RESET}"
-echo "${GREEN} # 1.11  ${RESET}"
-echo "${GREEN} # 1.11  ${RESET}"
-echo "${GREEN} # 1.11  ${RESET}"
 }
 
-function ArchlinuxInstall_AfterChroot () {
+function ArchlinuxInstall_Installation () {
+echo "${GREEN} # 2. Installation ${RESET}"
+echo "${GREEN} # 2.12 Select the mirrors ${RESET}"
+echo edit /etc/pacman/mirrorlist
+
+echo "${GREEN} # 2.13 Install essential packages${RESET}"
+# mariginal trust packages
+pacman -Sy archlinux-keyring && pacman -Su
+pacstrap /mnt base linux linux-firmware base-devel git vim netctl dhcpcd man-db man-pages texinfo lvm2
+}
+
+function ArchlinuxInstall_Configuration () {
+echo "${GREEN} # 3. Configuration ${RESET}"
 }
 
 #
 # Main
 #
 printf "Select the part to run [Y/n]
-         1. BeforeChroot
-	 2. AfterChroot
+         1. Preparation
+	 2. Installation
+	 3. Configuration
 	 \n"
 read answer
 case $answer in
-  1) ArchlinuxInstall_BeforeChroot
+  1) ArchlinuxInstall_Preparation
   ;;
-  2) ArchlinuxInstall_AfterChroot
+  2) ArchlinuxInstall_Installation
+  ;;
+  3) ArchlinuxInstall_Configuration
   ;;
 esac
 
