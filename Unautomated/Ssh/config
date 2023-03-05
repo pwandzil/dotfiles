@@ -1,0 +1,16 @@
+# MacOS
+
+# github
+Host github.com-pwa
+  HostName github.com
+  User git
+  #UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
+
+# other
+Host *
+  #UseKeychain yes
+  AddKeysToAgent yes
+  IdentityFile ~/.ssh/id_rsa
+
