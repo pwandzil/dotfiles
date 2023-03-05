@@ -6,21 +6,23 @@ Unlike the tru lazy prgrammer would do - no installation currently available - j
 # Sections
 This setup instructions will come for Windows (forgive me Steve), and also a few for MacOsX (thank you), and journey with Linux is WIP.
 
-## Vim
-~ U shall not know other editors than me.
-The only real choices are Vim and Em.. Vim. 
-Cant wait to port my Cygwin setup to Arch or WSL.
+## Unix Shell
+### Zsh
+Right.
 
-## Terminal 
-Everyone on knows those programmers with visual editors, sometimes you just don't even have energy to ask.. how do they run it via terminal?
-Yeah. They don't right?
+## Computer Terminal
+### VT100
+Remember DEC VT100? Me neither. 
 
-### Tmux 
+### TerminalEmulators
+No longer VT100, so modern computers now have emulators. Meh. 
+Everyone on knows those programmers with grahical editors, sometimes you just don't even have energy to ask.. how do they run it remotely?
+Yeah. They don't right? Or they use some "extensions" additional software that a real programmer just do not need. 
+
+#### Tmux 
 Once you got a terminal you would also like a multiplexer right? 
 Like with Vim the real challange is which set of shortcuts to use! Ha!
 But the first shock comes, when we discover Tmux comes with EMACS shortcuts by default (you have betrayed me!)
-
-### TerminalEmulators 
 
 #### MacOs iTerm2
 This was helpful: http://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/
@@ -31,7 +33,13 @@ I really like Cmd.exe but sometimes I switch to cmder to try something different
 ## Git
 Use use use the golden shortucs of git. They will ease you life or at least make u look cool in the eyes of the bystanders.
 
-## VSCode via Github Gist (Gist Id + Github AccessToken)
+## Editors 
+### Vim
+~ U shall not know other editors than me.
+The only real choices are Vim and Em.. Vim. 
+Cant wait to port my Cygwin setup to Arch or WSL.
+
+### VSCode via Github Gist (Gist Id + Github AccessToken)
 Just use the golden "Settings Sync" extensions for that you need to:
 1. Install VSCode
 2. Install extension "Settings Sync"
