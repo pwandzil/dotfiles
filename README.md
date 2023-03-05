@@ -10,6 +10,21 @@ This setup instructions will come for Windows (forgive me Steve), and also a few
 ### Zsh
 Right.
 
+### SSH and its config
+Ok so now we know we will use asymetric public key cryptography. https://en.wikipedia.org/wiki/Secure_Shell
+
+It would be nice to also have a config so we can manage:
+- different keys for different sites
+- govern registration with ssh-agent & keychain if needed
+
+For github it seems its not really trivial to use 2 keys ? https://gist.github.com/jexchan/2351996
+
+    # Each time, I have to check ssh-add -l to delete unneeded keys and reserve the key needed.
+    # For example, if I need id_rsa_id2, then I will do the below:
+    ssh-add -d ~/.ssh/id_rsa_id1
+    ssh-add -K ~/.ssh/id_rsa_id2
+
+
 ## Computer Terminal
 ### VT100
 Remember DEC VT100? Me neither. 
