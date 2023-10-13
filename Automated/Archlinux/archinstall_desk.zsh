@@ -141,7 +141,7 @@ echo "${GREEN} # 2.13 Install essential packages${RESET}"
 # mariginal trust packages
 # pacman -Sy archlinux-keyring && pacman -Su
 echo "Don't forget the intel-ucode, btrfs, zsh xD, and tmux!"
-pacstrap /mnt base linux linux-firmware intel-ucode btrfs-progs base-devel git vim zsh tmux sudo netctl dhcpcd man-db man-pages texinfo lvm2
+pacstrap /mnt base linux linux-firmware intel-ucode btrfs-progs base-devel git vim zsh tmux sudo netctl dhcpcd wget openssh man-db man-pages texinfo lvm2 htop
 }
 
 function ArchlinuxInstall_Configuration () {
