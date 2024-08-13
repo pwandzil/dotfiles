@@ -1,0 +1,56 @@
+--regex-C=/$x/x/x/e/ ######### .ctags
+--regex-C=/$x/x/x/e/ ######### Przemysław Wandzilak <4797644+pwandzil@users.noreply.github.com>
+--regex-C=/$x/x/x/e/ ######### created:      2017-11-24
+--regex-C=/$x/x/x/e/ ######### last update:  2024-08-14
+
+--verbose=yes
+--recurse=yes
+--tag-relative=yes
+
+--exclude=.git
+
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--exclude=*Conf
+--exclude=*edk2-Basetools-Win32
+
+--exclude=*Build
+--exclude=*Conf
+
+
+--exclude=*edk2/AppPkg
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--regex-C=/$x/x/x/e/ --exclude=*edk2/BaseTools
+--exclude=*edk2/Conf
+--exclude=*edk2/CryptoPkg
+--exclude=*edk2/EmbeddedPkg
+--exclude=*edk2/EmulatorPkg
+--exclude=*edk2/FatPkg
+
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--regex-C=/$x/x/x/e/ --exclude=*edk2/MdeModulePkg
+--regex-C=/$x/x/x/e/ --exclude=*edk2/MdePkg
+--exclude=*edk2/NetworkPkg
+--exclude=*edk2/Nt32Pkg
+--exclude=*edk2/OvmfPkg
+--exclude=*edk2/PcAtChipsetPkg
+--exclude=*edk2/PerformancePkg
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--regex-C=/$x/x/x/e/ --exclude=*edk2/SecurityPkg
+--exclude=*edk2/ShellBinPkg
+--exclude=*edk2/ShellPkg
+--exclude=*edk2/SignedCapsulePkg
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--regex-C=/$x/x/x/e/ --exclude=*edk2/SourceLevelDebugPkg
+--regex-C=/$x/x/x/e/ --exclude=*edk2/StdLib
+--regex-C=/$x/x/x/e/ --exclude=*edk2/StdLibPrivateInternalFiles
+--regex-C=/$x/x/x/e/ --exclude=*edk2/UefiCpuPkg
+
+
+--regex-C=/$x/x/x/e/ ######### COMMENT ######################
+--regex-C=/$x/x/x/e/ #--langmap=c:+.inc
+--regex-C=/$x/x/x/e/ #--langmap=asm:+.inc
+--regex-C=/$x/x/x/e/ #--regex-c='/.*__anon.*//'
+
+--regex-C=/$x/x/x/e/ #ctags --regex-c='/^module[ \t]*([a-zA-Z0-9_]+)/\1/d,definition/'
+--regex-C=/$x/x/x/e/ #ctags --regex-c='/.*__anon.*//'
+
