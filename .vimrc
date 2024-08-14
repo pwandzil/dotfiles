@@ -36,7 +36,7 @@ map <F7> gg=G<C-o><C-o>
 nmap <F9> :set invnumber<CR>
 
 ""
-"" vimplug
+"" vim-plug A minimalist Vim plugin manager https://github.com/junegunn/vim-plug
 ""
 call plug#begin('~/.vim/plugged')
 "" mouse support
