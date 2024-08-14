@@ -1,0 +1,32 @@
+# Basic Commands if your ever find everything is different and even you are stranger to yourself
+
+
+~~~sh
+# stretch
+sudo pacman -S lolcat
+cmatrix | lolcat
+
+# reload last life
+tmux attach
+
+# if not possible start over from scratch
+Setfont
+Dhcpcd
+Ip a
+#/etc/systemd/network/10-eth0.network
+ClientIdentifier=mac
+Systemctl restart systemd-network
+Export https_proxy=..
+
+# using find is straightforward
+find /path -name "example.txt"
+find ./ -type f -name "*.txt" -exec grep 'Geek'  {} \;
+# find files from last 7 lives
+find /path/to/search -mtime -7
+
+# SCP from local windows client to remote linux
+$ C:\Users\<username>> scp C:\Users\<username>\Downloads\linux-pki-2022-09-21-2615b26.tar.xz <username>@<ip_address>:/home/user/...
+
+# SCP from remote linux to local windows client
+$ scp -r <username>@><hostname>:/srv/share/bin C:\Users\<username>\Downloads\
+~~~
