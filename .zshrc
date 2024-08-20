@@ -114,6 +114,8 @@ export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=nvim
+# set PAGER to ease using git blame in zsh, else defaulted to more..
+export PAGER="less -F -X"
 export TERM=xterm-256color
 autoload -U compinit
 autoload -U bashcompinit
