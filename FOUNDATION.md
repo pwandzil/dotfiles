@@ -6,6 +6,26 @@
 sudo pacman -S lolcat
 cmatrix | lolcat
 
+# walk
+cd #without additional argument goes to the homedir
+
+# identity
+su      #superuser keep env
+su -    #superuser new env and goto userhome
+sudo su #superuser via sudo and user password only
+Ctrl-D/exit #go back
+
+# change
+chown pwandzil:developers file.txt
+chmod 764 file.txt # owner 7(rwx), group 6(rw-), public 4 (r--)
+chmod g+x file.sh  # group+execute
+chgrp developers file.txt
+
+#
+Shift+select  # select on VT terminal host side
+Shift+insert  # paste
+Shift+Ctrl+V  # paste
+
 # reload last life
 tmux attach
 
