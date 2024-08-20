@@ -106,7 +106,8 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # aliases
 alias vi="vim"
 alias vim="nvim"
-
+#wget ask-password
+alias wgetap="wget --ask-password --user $USER"
 alias stitch_actm="python /srv/share/tools/AcmReplacer/acmreplacer.py -g '9844E666-A856-4022-BAB4-7E6CFE7BDED0'"
 
 # exports
@@ -114,7 +115,7 @@ export LC_ALL=en_US.UTF-8
 export GPG_TTY=$(tty)
 export PATH=$PATH:$HOME/.local/bin
 export EDITOR=nvim
-# set PAGER to ease using git blame in zsh, else defaulted to more..
+#set PAGER to ease using git blame in zsh, else defaulted to more..
 export PAGER="less -F -X"
 export TERM=xterm-256color
 autoload -U compinit
