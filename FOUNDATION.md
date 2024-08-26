@@ -54,4 +54,9 @@ $ C:\Users\<username>> scp C:\Users\<username>\Downloads\linux-pki-2022-09-21-26
 
 # SCP from remote linux to local windows client
 $ scp -r <username>@><hostname>:/srv/share/bin C:\Users\<username>\Downloads\
+
+# Run
+# Mergetool / Vimdiff / Neovim diff
+nvim -d file1 file2
+
 ~~~
