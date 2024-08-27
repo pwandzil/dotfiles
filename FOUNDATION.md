@@ -10,6 +10,13 @@ clear -x
 sudo pacman -S lolcat
 cmatrix | lolcat
 
+# look around
+ps
+ps -a
+ps -ax
+ps aux
+pkill telnet
+
 # walk
 cd #without additional argument goes to the homedir
 
