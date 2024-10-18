@@ -66,4 +66,6 @@ $ scp -r <username>@><hostname>:/srv/share/bin C:\Users\<username>\Downloads\
 # Mergetool / Vimdiff / Neovim diff
 nvim -d file1 file2
 
+# vim
+vim -u NONE      # skip loading configuration 
 ~~~
