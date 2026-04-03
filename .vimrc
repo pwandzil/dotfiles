@@ -31,6 +31,9 @@ set encoding=utf-8
 set mouse=nv " toggle mouse ON by default
 syn on
 
+"" hide CRLF... (edk2 tianocore disaster)
+set fileformats=dos,unix
+
 " user-defined mapping
 map <F7> gg=G<C-o><C-o>
 nmap <F9> :set invnumber<CR>
