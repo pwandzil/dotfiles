@@ -21,3 +21,9 @@ input {
 
 
 ```
+
+# TMUX
+
+Prefix remap to ctrl+a is a conflict with "Home" in Omarchy.
+
+Omarchy uses Ctrl+Space.
