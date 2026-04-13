@@ -818,12 +818,59 @@ podman run --name=devel -i -t -d -v /storage:/storage:Z,U --userns=keep-id ubunt
 
 ## Appendix B - TMUX Cheatsheet
 
-Based on: `.tmux.conf`
+Two configs are available:
+- **`.tmux.conf`** -- original config (prefix: `Ctrl-a`)
+- **`.tmux.omarchy.conf`** -- Omarchy-style config (prefix: `Ctrl-Space`)
+
+### Omarchy config (`.tmux.omarchy.conf`) -- recommended
+
+> Prefix key: **`Ctrl-Space`** (secondary: `Ctrl-b`)
+> Mouse: enabled | Base index: 1 | Status bar: top
+
+| Action | Keybinding |
+|--------|------------|
+| **General** | |
+| Reload config | `Prefix q` |
+| Detach | `Prefix d` |
+| **Sessions** | |
+| New session | `Prefix C` (capital) |
+| Rename session | `Prefix R` (capital) |
+| Kill session | `Prefix K` (capital) |
+| Previous session | `Prefix P` or `Alt-Up` |
+| Next session | `Prefix N` or `Alt-Down` |
+| **Windows** | |
+| New window | `Prefix c` |
+| Rename window | `Prefix r` |
+| Kill window | `Prefix k` |
+| Select window 1-9 | `Alt-1` .. `Alt-9` |
+| Previous window | `Alt-Left` |
+| Next window | `Alt-Right` |
+| Move window left | `Alt-Shift-Left` |
+| Move window right | `Alt-Shift-Right` |
+| **Panes** | |
+| Split horizontal | `Prefix h` |
+| Split vertical | `Prefix v` |
+| Kill pane | `Prefix x` |
+| Navigate left | `Ctrl-Alt-Left` |
+| Navigate right | `Ctrl-Alt-Right` |
+| Navigate up | `Ctrl-Alt-Up` |
+| Navigate down | `Ctrl-Alt-Down` |
+| Resize left (5) | `Ctrl-Alt-Shift-Left` |
+| Resize right (5) | `Ctrl-Alt-Shift-Right` |
+| Resize up (5) | `Ctrl-Alt-Shift-Up` |
+| Resize down (5) | `Ctrl-Alt-Shift-Down` |
+| **Copy Mode (vi)** | |
+| Begin selection | `v` |
+| Copy selection | `y` |
+
+**Features**: 256-color, mouse support, auto-rename windows to current path, 50k history, status bar shows session/mode/zoom/host.
+
+### Original config (`.tmux.conf`)
 
 > Prefix key: **`Ctrl-a`** (remapped from default `Ctrl-b`)
 
 | Action | Keybinding |
-|--------|-----------|
+|--------|------------|
 | **Sessions** | |
 | Reload config | `tmux source-file ~/.tmux.conf` |
 | Detach | `Ctrl-a d` |
@@ -856,6 +903,20 @@ Based on: `.tmux.conf`
 | Paste from system clipboard | `Ctrl-a Ctrl-v` |
 
 **Plugins**: tpm, tmux-sensible, tmux-themepack (powerline/double/cyan), tmux-battery, tmux-yank
+
+### Which config to use?
+
+| Feature | `.tmux.conf` | `.tmux.omarchy.conf` |
+|---------|:------------:|:--------------------:|
+| Prefix | `Ctrl-a` | `Ctrl-Space` |
+| Mouse | no | yes |
+| Window select by number | no | `Alt-1`..`Alt-9` |
+| Session management binds | no | yes (`C`/`R`/`K`/`P`/`N`) |
+| Auto-rename to cwd | no | yes |
+| Status bar position | bottom | top |
+| Pane navigation | prefix + hjkl | `Ctrl-Alt-Arrows` (no prefix) |
+| Window reorder | no | `Alt-Shift-Arrows` |
+| Plugins | tpm + 4 plugins | none (standalone) |
 
 ---
 
