@@ -208,7 +208,20 @@ hostnamectl
 > **Note**: At this stage ZSH is not yet installed - use `/bin/bash` as the default shell.
 > You can switch to ZSH later after installing it (see [2.3 Basic Tools](#23-basic-tools--vim-and-tmux)).
 
-Using `systemd-homed` (modern approach):
+> **[!] Warning: Think twice before using `systemd-homed`**
+>
+> Arch Linux has quietly **stopped recommending** `systemd-homed` for general use. The [Arch Wiki](https://wiki.archlinux.org/title/Systemd-homed) now reflects a cautious, even discouraging tone. Real-world problems include:
+>
+> | Problem | What happens |
+> |---------|-------------|
+> | `chsh` doesn't work | `chsh: can only change local entries` -- homed users aren't in `/etc/passwd`, so `chsh` can't modify them. Must use `homectl update --shell=` instead. |
+> | `ssh-copy-id` silently fails | Keys are added to `~/.ssh/authorized_keys` but **sshd ignores them**. The SSH server uses `userdbctl` (systemd user database) via `AuthorizedKeysCommand` -- keys not registered in `homectl` are rejected. |
+> | Home may be unmounted | The user "exists" but the home directory is inaccessible until `homectl activate` -- services, cron jobs, and SSH can fail silently. |
+> | Breaks core Unix expectations | Identity is no longer file-based. Tools that expect `/etc/passwd` + `~/.ssh/` to be the source of truth will misbehave. |
+>
+> **Recommendation**: Use `useradd` (traditional) for new setups. If you're already on `systemd-homed`, see [2.4 SSH-Init](#24-ssh-init--passwordless-ssh-access) for the `homectl update --ssh-authorized-key` workaround.
+
+Using `systemd-homed` ([!] not recommended -- see warning above):
 
 ```bash
 systemctl enable --now systemd-homed.service
@@ -467,6 +480,60 @@ type $env:USERPROFILE\.ssh\id_ed25519.pub | ssh <username>@<arch_ip> "mkdir -p ~
    rm ~/.ssh/id_ed25519.pub
    ```
 
+**Method D -- `homectl` for systemd-homed users** ([!] REQUIRED if using systemd-homed):
+
+> **Root cause**: On systems with `systemd-homed`, the SSH server is configured to use a **dynamic key provider** instead of `~/.ssh/authorized_keys`:
+>
+> ```
+> # In /etc/ssh/sshd_config (set automatically by systemd-homed):
+> AuthorizedKeysCommand /usr/bin/userdbctl ssh-authorized-keys %u
+> AuthorizedKeysCommandUser root
+> ```
+>
+> This means:
+> - [x] `sshd` does **NOT** trust `~/.ssh/authorized_keys` alone
+> - [x] It asks `userdbctl` (systemd user database) for allowed SSH keys
+> - [x] Keys not known to `userdbctl` are rejected -- even if the file exists
+>
+> That's why `ssh-copy-id` says "key added" and authentication **still falls back to password**.
+>
+> The key flow:
+> ```
+> ssh -> sshd
+>      -> AuthorizedKeysCommand
+>      -> userdbctl ssh-authorized-keys <username>
+>      -> (keys returned? yes/no)
+> ```
+> If no key is returned, sshd refuses public-key auth.
+
+To register your key with `homectl`:
+
+```bash
+# Read the public key content first
+cat ~/.ssh/id_ed25519.pub
+# Copy the output (e.g.: ssh-ed25519 AAAAC3Nz... my-machine-to-arch)
+
+# Register it with homectl
+homectl update <username> --ssh-authorized-key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAA... my-machine-to-arch"
+```
+
+Or pipe it directly:
+
+```bash
+homectl update <username> --ssh-authorized-key="$(cat ~/.ssh/id_ed25519.pub)"
+```
+
+Verify the key is registered:
+
+```bash
+# Check what userdbctl returns for your user
+userdbctl ssh-authorized-keys <username>
+
+# Should output your public key
+```
+
+> **Note**: You still need `~/.ssh/authorized_keys` with correct permissions (Step 3) as a fallback. Some SSH configurations check both `userdbctl` and the file. Register with `homectl` AND set up the file.
+
 #### Step 3 - Fix permissions on Arch (IMPORTANT!)
 
 SSH is **very strict** about file permissions. If permissions are wrong, SSH will silently fall back to password authentication - no error, just a password prompt. This is the #1 reason passwordless SSH "doesn't work".
@@ -564,8 +631,8 @@ homectl update <username> --shell=/usr/bin/zsh
 ```
 
 This gives you:
-- **System default** → `bash` - VS Code SSH-Remote spawns bash, which reads `/etc/profile` and `/etc/profile.d/*.sh`, so proxy, PATH, and env vars are available to MCP servers.
-- **Your interactive shell** → `zsh` (via `homectl`) - you get Oh My Zsh, history, plugins, etc. when you SSH in manually.
+- **System default** -> `bash` - VS Code SSH-Remote spawns bash, which reads `/etc/profile` and `/etc/profile.d/*.sh`, so proxy, PATH, and env vars are available to MCP servers.
+- **Your interactive shell** -> `zsh` (via `homectl`) - you get Oh My Zsh, history, plugins, etc. when you SSH in manually.
 
 > **Verify** after applying:
 > ```bash
@@ -826,7 +893,7 @@ Based on: `.vimrc`
 | Inline diff | `<leader>vd` |
 | **Whitespace** | |
 | Strip on save | automatic (vim-better-whitespace) |
-| DOS→Unix line endings | `<leader>du` |
+| DOS->Unix line endings | `<leader>du` |
 
 **Plugin install**: Run `:PlugInstall` inside VIM.
 
@@ -867,11 +934,11 @@ Use `.vimrc` (vim-plug) as the primary config. It is more modern and uses parall
 ```
    GYAHHH.tar.gz
    │││││
-   ││││└─ .gz  → z = gZip
-   │││└── H    → (just screaming)
-   ││└─── A    → (more screaming)
-   │└──── Y    → (still screaming)
-   └───── G    → (internal pain)
+   ││││└─ .gz  -> z = gZip
+   │││└── H    -> (just screaming)
+   ││└─── A    -> (more screaming)
+   │└──── Y    -> (still screaming)
+   └───── G    -> (internal pain)
 ```
 
 ### Xtract Ze Filez !!!!
