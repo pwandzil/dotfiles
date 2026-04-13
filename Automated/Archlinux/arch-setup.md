@@ -709,6 +709,39 @@ git config --global user.email "your@email.com"
 git lfs install
 ```
 
+#### GitHub Copilot CLI (AI in the terminal)
+
+GitHub Copilot CLI provides AI-powered command suggestions directly in the terminal -- useful when you can't remember a command or want to translate natural language to shell commands.
+
+```bash
+# Refresh package database
+sudo pacman -Syy
+
+# Install from AUR
+paru -S github-copilot-cli
+```
+
+After install, authenticate with your GitHub account:
+
+```bash
+github-copilot-cli auth
+```
+
+Usage:
+
+```bash
+# Ask for a shell command
+?? "find all .conf files modified in the last 7 days"
+
+# Ask for a git command
+git? "undo last commit but keep changes"
+
+# Ask for a gh CLI command
+gh? "list my open PRs"
+```
+
+> **Note**: Requires a GitHub Copilot subscription (Individual, Business, or Enterprise).
+
 #### Install Oh My Zsh (optional)
 
 ```bash
